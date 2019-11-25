@@ -6,10 +6,15 @@
         <div class="title">{{item.title}}</div>
         <div class="total">
           <span class="total-price">￥{{item.price}}</span>
-          <van-stepper class="total-num" v-model="item.num" @change="calcPrice($event, item)"/>
+          <van-stepper class="total-num" v-model="item.num" @change="calcPrice($event, item)" />
         </div>
       </div>
-    <div>总价：{{setValue(item)}}</div>
+      <div>
+        <div>总价：{{setValue(item)}}</div>
+        <div @click="clickBtn(i)">
+          <slot name="btn"></slot>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -22,23 +27,25 @@ export default {
       default: () => []
     }
   },
-  data() {
-    return {
-    }
+  data () {
+    return {}
   },
   computed: {
-    setValue() {
-      return (item) => {
+    setValue () {
+      return item => {
         return item.price * (item.num || 1)
       }
     }
   },
   methods: {
-      calcPrice(val, item) {
-        this.value = val*item.price
-      }
-  },
-};
+    calcPrice (val, item) {
+      this.value = val * item.price
+    },
+    clickBtn (i) {
+      this.row.splice(i, 1)
+    }
+  }
+}
 </script>
 
 <style lang="less">
