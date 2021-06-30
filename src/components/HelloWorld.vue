@@ -1,10 +1,10 @@
 <template>
   <div class="hello-world">
     <van-tabs v-model="active">
-      <van-tab title="标签 1">
+      <van-tab title="商品">
         <Card :row="cardList0"></Card>
       </van-tab>
-      <van-tab title="标签 2">
+      <van-tab title="购物车">
         <Card :row="cardList1">
           <van-button type="danger" slot="btn">删除</van-button>
         </Card>
